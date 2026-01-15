@@ -72,10 +72,10 @@
             <span class="key">W</span> <span class="key">A</span> <span class="key">S</span> <span class="key">D</span> - Move Forward/Left/Back/Right
         </div>
         <div class="control-item">
-            <span class="key">Space</span> / <span class="key">Shift</span> - Move Up/Down
+            <span class="key">Mouse</span> - Look Around
         </div>
         <div class="control-item">
-            <span class="key">Mouse</span> - Look Around
+            <span class="key">Space</span> - Jump
         </div>
         <div class="control-item">
             <span class="key">R</span> - Reset Cube Position
@@ -220,16 +220,123 @@
         cylinder.receiveShadow = true;
         scene.add(cylinder);
 
+        // Create floating platform
+        const platformGeometry = new THREE.BoxGeometry(4, 0.5, 4);
+        const platformMaterial = new THREE.MeshStandardMaterial({
+            color: 0x9933ff,
+            roughness: 0.5,
+            metalness: 0.3
+        });
+        const platform = new THREE.Mesh(platformGeometry, platformMaterial);
+        platform.position.set(12, 2, 12);
+        platform.castShadow = true;
+        platform.receiveShadow = true;
+        scene.add(platform);
+
+        // Create multiple cubes scattered around
+        const smallCubeGeometry = new THREE.BoxGeometry(0.7, 0.7, 0.7);
+        const colors = [0xffff00, 0xff00ff, 0x00ffff, 0xff0000];
+        const cubePositions = [
+            { x: -10, y: 1, z: 0 },
+            { x: 0, y: 1, z: 10 },
+            { x: 10, y: 1, z: -10 },
+            { x: -12, y: 1, z: -12 }
+        ];
+
+        cubePositions.forEach((pos, idx) => {
+            const smallCubeMaterial = new THREE.MeshStandardMaterial({
+                color: colors[idx],
+                roughness: 0.5,
+                metalness: 0.4,
+                emissive: colors[idx],
+                emissiveIntensity: 0.3
+            });
+            const smallCube = new THREE.Mesh(smallCubeGeometry, smallCubeMaterial);
+            smallCube.position.set(pos.x, pos.y, pos.z);
+            smallCube.castShadow = true;
+            smallCube.receiveShadow = true;
+            scene.add(smallCube);
+        });
+
+        // Create pyramids (cones)
+        const coneGeometry = new THREE.ConeGeometry(0.6, 1.5, 8);
+        const coneMaterial = new THREE.MeshStandardMaterial({
+            color: 0x00aa00,
+            roughness: 0.6,
+            metalness: 0.2
+        });
+        const cone1 = new THREE.Mesh(coneGeometry, coneMaterial);
+        cone1.position.set(5, 0.8, -15);
+        cone1.castShadow = true;
+        cone1.receiveShadow = true;
+        scene.add(cone1);
+
+        const cone2 = new THREE.Mesh(coneGeometry, coneMaterial);
+        cone2.position.set(-15, 0.8, 5);
+        cone2.castShadow = true;
+        cone2.receiveShadow = true;
+        scene.add(cone2);
+
+        // Create torus for decoration
+        const torusGeometry = new THREE.TorusGeometry(1.5, 0.4, 16, 100);
+        const torusMaterial = new THREE.MeshStandardMaterial({
+            color: 0xffaa00,
+            roughness: 0.3,
+            metalness: 0.8
+        });
+        const torus = new THREE.Mesh(torusGeometry, torusMaterial);
+        torus.position.set(0, 3, 0);
+        torus.rotation.x = Math.PI / 4;
+        torus.castShadow = true;
+        torus.receiveShadow = true;
+        scene.add(torus);
+
+        // Create boxes stacked together
+        const stackBoxGeometry = new THREE.BoxGeometry(0.8, 0.8, 0.8);
+        const stackMaterial = new THREE.MeshStandardMaterial({
+            color: 0xaa0066,
+            roughness: 0.7,
+            metalness: 0.2
+        });
+        
+        for (let i = 0; i < 3; i++) {
+            const stackBox = new THREE.Mesh(stackBoxGeometry, stackMaterial);
+            stackBox.position.set(-15, 0.4 + i * 0.8, -15);
+            stackBox.castShadow = true;
+            stackBox.receiveShadow = true;
+            scene.add(stackBox);
+        }
+
         // Movement control
         const keys = {};
         const cubeSpeed = 0.1;
         const cubeInitialPos = { x: 0, y: 1, z: 0 };
+        
+        // Physics/Gravity
+        const gravity = 0.75; // 5g force for jump landing
+        const jumpForce = 1.6; // Stronger jump impulse so it visibly lifts before gravity pulls down
+        const cubeVelocity = { x: 0, y: 0, z: 0 };
+        const groundLevel = 0.5;
+        let isGrounded = true;
+        let canJump = true;
 
         window.addEventListener('keydown', (e) => {
             keys[e.key.toLowerCase()] = true;
-            if (e.key.toLowerCase() === 'r') {
+            const key = e.key.toLowerCase();
+            
+            if (key === 'r') {
                 cube.position.set(cubeInitialPos.x, cubeInitialPos.y, cubeInitialPos.z);
                 cube.rotation.set(0, 0, 0);
+                cubeVelocity.y = 0;
+                isGrounded = true;
+                canJump = true;
+            }
+            // Jump mechanic
+            if (key === ' ' && isGrounded && canJump) {
+                cubeVelocity.y = jumpForce;
+                isGrounded = false;
+                canJump = false;
+                e.preventDefault();
             }
         });
 
@@ -237,11 +344,12 @@
             keys[e.key.toLowerCase()] = false;
         });
 
-        // Mouse look control
-        const lookSpeed = 0.003;
+        // Mouse look control - Third person camera
+        const lookSpeed = 0.005;
         let isPointerLocked = false;
         let cameraYaw = 0;
-        let cameraPitch = 0;
+        let cameraPitch = Math.PI / 6; // 30 degrees angle
+        const cameraDistance = 6;
 
         document.addEventListener('click', () => {
             document.body.requestPointerLock = document.body.requestPointerLock || document.body.mozRequestPointerLock;
@@ -258,8 +366,8 @@
             cameraYaw -= e.movementX * lookSpeed;
             cameraPitch -= e.movementY * lookSpeed;
 
-            // Clamp pitch
-            cameraPitch = Math.max(-Math.PI / 2, Math.min(Math.PI / 2, cameraPitch));
+            // Clamp pitch to prevent flipping
+            cameraPitch = Math.max(Math.PI / 12, Math.min(Math.PI / 2.5, cameraPitch));
         });
 
         // Handle window resize
@@ -273,38 +381,82 @@
         function animate() {
             requestAnimationFrame(animate);
 
-            // Move cube based on keyboard input
-            if (keys['w']) cube.position.z -= cubeSpeed;
-            if (keys['s']) cube.position.z += cubeSpeed;
-            if (keys['a']) cube.position.x -= cubeSpeed;
-            if (keys['d']) cube.position.x += cubeSpeed;
-            if (keys[' ']) cube.position.y += cubeSpeed;
-            if (keys['shift']) cube.position.y -= cubeSpeed;
+            // Calculate movement direction based on camera angle
+            const moveVector = new THREE.Vector3(0, 0, 0);
+            const forward = new THREE.Vector3(0, 0, -1);
+            const right = new THREE.Vector3(1, 0, 0);
+            
+            forward.applyAxisAngle(new THREE.Vector3(0, 1, 0), cameraYaw);
+            right.applyAxisAngle(new THREE.Vector3(0, 1, 0), cameraYaw);
+
+            // Character movement based on keyboard input
+            if (keys['w']) moveVector.add(forward);
+            if (keys['s']) moveVector.sub(forward);
+            if (keys['a']) moveVector.sub(right);
+            if (keys['d']) moveVector.add(right);
+
+            // Normalize and apply speed
+            if (moveVector.length() > 0) {
+                moveVector.normalize();
+                cubeVelocity.x = moveVector.x * cubeSpeed;
+                cubeVelocity.z = moveVector.z * cubeSpeed;
+            } else {
+                cubeVelocity.x = 0;
+                cubeVelocity.z = 0;
+            }
+
+            // Apply gravity
+            cubeVelocity.y -= gravity;
+            
+            // Apply velocity
+            cube.position.x += cubeVelocity.x;
+            cube.position.y += cubeVelocity.y;
+            cube.position.z += cubeVelocity.z;
+
+            // Check collision with ground
+            if (cube.position.y <= groundLevel) {
+                cube.position.y = groundLevel;
+                cubeVelocity.y = 0;
+                isGrounded = true;
+                canJump = true;
+            } else {
+                isGrounded = false;
+            }
 
             // Keep cube within room bounds
             const boundary = 19;
             cube.position.x = Math.max(-boundary, Math.min(boundary, cube.position.x));
             cube.position.z = Math.max(-boundary, Math.min(boundary, cube.position.z));
-            cube.position.y = Math.max(0.5, Math.min(9, cube.position.y));
+            cube.position.y = Math.max(groundLevel, Math.min(9, cube.position.y));
 
-            // Rotate cube
-            cube.rotation.x += 0.01;
-            cube.rotation.y += 0.015;
+            // Rotate cube based on movement direction
+            if (moveVector.length() > 0) {
+                const targetYaw = Math.atan2(moveVector.x, moveVector.z);
+                cube.rotation.y = targetYaw;
+            }
+            
+            // Slight bobbing animation
+            cube.rotation.x = Math.sin(Date.now() * 0.001) * 0.1;
 
             // Update position display
             document.getElementById('cubePos').textContent = 
                 `Cube Position: X: ${cube.position.x.toFixed(2)} Y: ${cube.position.y.toFixed(2)} Z: ${cube.position.z.toFixed(2)}`;
 
-            // Update camera rotation based on mouse look
-            camera.rotation.order = 'YXZ';
-            camera.rotation.y = cameraYaw;
-            camera.rotation.x = cameraPitch;
+            // Third person camera positioning (Fortnite style)
+            const cameraHeight = 1.5;
+            const horizontalDistance = cameraDistance * Math.cos(cameraPitch);
+            const verticalDistance = cameraDistance * Math.sin(cameraPitch);
+            
+            camera.position.x = cube.position.x + Math.sin(cameraYaw) * horizontalDistance;
+            camera.position.y = cube.position.y + cameraHeight + verticalDistance;
+            camera.position.z = cube.position.z + Math.cos(cameraYaw) * horizontalDistance;
+            
+            // Make camera look at cube
+            camera.lookAt(cube.position.x, cube.position.y + 0.5, cube.position.z);
 
-            // Position camera at cube + offset
-            const cameraOffset = 2.5;
-            camera.position.x = cube.position.x;
-            camera.position.y = cube.position.y + 0.8;
-            camera.position.z = cube.position.z + cameraOffset;
+            // Animate decorative objects
+            torus.rotation.z += 0.005;
+            torus.rotation.y += 0.003;
 
             renderer.render(scene, camera);
         }
