@@ -1,0 +1,144 @@
+0 verbose cli C:\Program Files\nodejs\node.exe C:\Program Files\nodejs\node_modules\npm\bin\npm-cli.js
+1 info using npm@10.9.2
+2 info using node@v22.17.0
+3 silly config load:file:C:\Program Files\nodejs\node_modules\npm\npmrc
+4 silly config load:file:C:\Users\meema\AppData\Local\Microsoft\TypeScript\5.9\.npmrc
+5 silly config load:file:C:\Users\meema\.npmrc
+6 silly config load:file:C:\Users\meema\AppData\Roaming\npm\etc\npmrc
+7 verbose title npm install @types/react@ts5.9 @types/three@ts5.9
+8 verbose argv "install" "--ignore-scripts" "@types/react@ts5.9" "@types/three@ts5.9" "--save-dev" "--user-agent" "typesInstaller/5.9.3"
+9 verbose logfile logs-max:10 dir:D:\My stuff\Passion work\Websites I made\ExperimentalRoom\npm-cache\_logs\2026-02-01T13_39_54_088Z-
+10 verbose logfile D:\My stuff\Passion work\Websites I made\ExperimentalRoom\npm-cache\_logs\2026-02-01T13_39_54_088Z-debug-0.log
+11 silly logfile done cleaning log files
+12 silly packumentCache heap:4345298944 maxSize:1086324736 maxEntrySize:543162368
+13 silly packumentCache corgi:https://registry.npmjs.org/@types%2freact cache-miss
+14 silly packumentCache corgi:https://registry.npmjs.org/@types%2fthree cache-miss
+15 http fetch GET 200 https://registry.npmjs.org/@types%2freact 370ms (cache miss)
+16 silly packumentCache corgi:https://registry.npmjs.org/@types%2freact set size:undefined disposed:false
+17 http fetch GET 200 https://registry.npmjs.org/@types%2fthree 1005ms (cache miss)
+18 silly packumentCache corgi:https://registry.npmjs.org/@types%2fthree set size:undefined disposed:false
+19 silly idealTree buildDeps
+20 silly fetch manifest @types/react@19.2.10
+21 silly packumentCache full:https://registry.npmjs.org/@types%2freact cache-miss
+22 http fetch GET 200 https://registry.npmjs.org/@types%2freact 84ms (cache revalidated)
+23 silly packumentCache full:https://registry.npmjs.org/@types%2freact set size:2555610 disposed:false
+24 silly fetch manifest @types/three@0.182.0
+25 silly packumentCache full:https://registry.npmjs.org/@types%2fthree cache-miss
+26 http fetch GET 200 https://registry.npmjs.org/@types%2fthree 404ms (cache miss)
+27 silly packumentCache full:https://registry.npmjs.org/@types%2fthree set size:undefined disposed:false
+28 silly placeDep ROOT @types/react@19.2.10 REPLACE for:  want: 19.2.10
+29 silly placeDep ROOT @types/three@0.182.0 OK for:  want: 0.182.0
+30 silly fetch manifest fflate@~0.8.2
+31 silly packumentCache full:https://registry.npmjs.org/fflate cache-miss
+32 silly fetch manifest @types/webxr@>=0.5.17
+33 silly packumentCache full:https://registry.npmjs.org/@types%2fwebxr cache-miss
+34 silly fetch manifest @webgpu/types@*
+35 silly packumentCache full:https://registry.npmjs.org/@webgpu%2ftypes cache-miss
+36 silly fetch manifest meshoptimizer@~0.22.0
+37 silly packumentCache full:https://registry.npmjs.org/meshoptimizer cache-miss
+38 silly fetch manifest @types/stats.js@*
+39 silly packumentCache full:https://registry.npmjs.org/@types%2fstats.js cache-miss
+40 silly fetch manifest @tweenjs/tween.js@~23.1.3
+41 silly packumentCache full:https://registry.npmjs.org/@tweenjs%2ftween.js cache-miss
+42 silly fetch manifest @dimforge/rapier3d-compat@~0.12.0
+43 silly packumentCache full:https://registry.npmjs.org/@dimforge%2frapier3d-compat cache-miss
+44 http fetch GET 200 https://registry.npmjs.org/fflate 106ms (cache miss)
+45 silly packumentCache full:https://registry.npmjs.org/fflate set size:undefined disposed:false
+46 http fetch GET 200 https://registry.npmjs.org/meshoptimizer 143ms (cache miss)
+47 silly packumentCache full:https://registry.npmjs.org/meshoptimizer set size:undefined disposed:false
+48 http fetch GET 200 https://registry.npmjs.org/@types%2fstats.js 194ms (cache miss)
+49 silly packumentCache full:https://registry.npmjs.org/@types%2fstats.js set size:undefined disposed:false
+50 http fetch GET 200 https://registry.npmjs.org/@webgpu%2ftypes 406ms (cache miss)
+51 silly packumentCache full:https://registry.npmjs.org/@webgpu%2ftypes set size:undefined disposed:false
+52 http fetch GET 200 https://registry.npmjs.org/@tweenjs%2ftween.js 416ms (cache miss)
+53 silly packumentCache full:https://registry.npmjs.org/@tweenjs%2ftween.js set size:undefined disposed:false
+54 http fetch GET 200 https://registry.npmjs.org/@dimforge%2frapier3d-compat 491ms (cache miss)
+55 silly packumentCache full:https://registry.npmjs.org/@dimforge%2frapier3d-compat set size:undefined disposed:false
+56 http fetch GET 200 https://registry.npmjs.org/@types%2fwebxr 575ms (cache miss)
+57 silly packumentCache full:https://registry.npmjs.org/@types%2fwebxr set size:undefined disposed:false
+58 silly placeDep ROOT @dimforge/rapier3d-compat@0.12.0 OK for: @types/three@0.182.0 want: ~0.12.0
+59 silly placeDep ROOT @tweenjs/tween.js@23.1.3 OK for: @types/three@0.182.0 want: ~23.1.3
+60 silly placeDep ROOT @types/stats.js@0.17.4 OK for: @types/three@0.182.0 want: *
+61 silly placeDep ROOT @types/webxr@0.5.24 OK for: @types/three@0.182.0 want: >=0.5.17
+62 silly placeDep ROOT @webgpu/types@0.1.69 OK for: @types/three@0.182.0 want: *
+63 silly placeDep ROOT fflate@0.8.2 OK for: @types/three@0.182.0 want: ~0.8.2
+64 silly placeDep ROOT meshoptimizer@0.22.0 OK for: @types/three@0.182.0 want: ~0.22.0
+65 silly reify mark retired [
+65 silly reify   'C:\\Users\\meema\\AppData\\Local\\Microsoft\\TypeScript\\5.9\\node_modules\\@types\\react'
+65 silly reify ]
+66 silly reify moves {
+66 silly reify   'C:\\Users\\meema\\AppData\\Local\\Microsoft\\TypeScript\\5.9\\node_modules\\@types\\react': 'C:\\Users\\meema\\AppData\\Local\\Microsoft\\TypeScript\\5.9\\node_modules\\@types\\.react-Tgjg1w2U'
+66 silly reify }
+67 silly audit bulk request {
+67 silly audit   '@types/body-parser': [ '1.19.6' ],
+67 silly audit   '@types/connect': [ '3.4.38' ],
+67 silly audit   '@types/cors': [ '2.8.19' ],
+67 silly audit   '@types/express': [ '5.0.6' ],
+67 silly audit   '@types/express-serve-static-core': [ '5.1.1' ],
+67 silly audit   '@types/gh-pages': [ '6.1.0' ],
+67 silly audit   '@types/http-errors': [ '2.0.5' ],
+67 silly audit   '@types/merge-descriptors': [ '1.0.3' ],
+67 silly audit   '@types/node': [ '25.0.9' ],
+67 silly audit   '@types/qs': [ '6.14.0' ],
+67 silly audit   '@types/range-parser': [ '1.2.7' ],
+67 silly audit   '@types/react-dom': [ '19.2.3' ],
+67 silly audit   '@types/send': [ '1.2.1' ],
+67 silly audit   '@types/serve-static': [ '2.2.0' ],
+67 silly audit   '@types/ws': [ '8.18.1' ],
+67 silly audit   csstype: [ '3.2.3' ],
+67 silly audit   'types-registry': [ '0.1.755' ],
+67 silly audit   'undici-types': [ '7.16.0' ],
+67 silly audit   '@types/react': [ '19.2.10' ],
+67 silly audit   '@types/three': [ '0.182.0' ],
+67 silly audit   '@dimforge/rapier3d-compat': [ '0.12.0' ],
+67 silly audit   '@tweenjs/tween.js': [ '23.1.3' ],
+67 silly audit   '@types/stats.js': [ '0.17.4' ],
+67 silly audit   '@types/webxr': [ '0.5.24' ],
+67 silly audit   '@webgpu/types': [ '0.1.69' ],
+67 silly audit   fflate: [ '0.8.2' ],
+67 silly audit   meshoptimizer: [ '0.22.0' ]
+67 silly audit }
+68 http cache meshoptimizer@https://registry.npmjs.org/meshoptimizer/-/meshoptimizer-0.22.0.tgz 0ms (cache hit)
+69 http cache @webgpu/types@https://registry.npmjs.org/@webgpu/types/-/types-0.1.69.tgz 0ms (cache hit)
+70 http cache fflate@https://registry.npmjs.org/fflate/-/fflate-0.8.2.tgz 0ms (cache hit)
+71 http cache @types/stats.js@https://registry.npmjs.org/@types/stats.js/-/stats.js-0.17.4.tgz 0ms (cache hit)
+72 http cache @types/webxr@https://registry.npmjs.org/@types/webxr/-/webxr-0.5.24.tgz 0ms (cache hit)
+73 http cache @dimforge/rapier3d-compat@https://registry.npmjs.org/@dimforge/rapier3d-compat/-/rapier3d-compat-0.12.0.tgz 0ms (cache hit)
+74 silly tarball no local data for meshoptimizer@https://registry.npmjs.org/meshoptimizer/-/meshoptimizer-0.22.0.tgz. Extracting by manifest.
+75 silly tarball no local data for @webgpu/types@https://registry.npmjs.org/@webgpu/types/-/types-0.1.69.tgz. Extracting by manifest.
+76 silly tarball no local data for fflate@https://registry.npmjs.org/fflate/-/fflate-0.8.2.tgz. Extracting by manifest.
+77 silly tarball no local data for @types/stats.js@https://registry.npmjs.org/@types/stats.js/-/stats.js-0.17.4.tgz. Extracting by manifest.
+78 silly tarball no local data for @types/webxr@https://registry.npmjs.org/@types/webxr/-/webxr-0.5.24.tgz. Extracting by manifest.
+79 silly tarball no local data for @dimforge/rapier3d-compat@https://registry.npmjs.org/@dimforge/rapier3d-compat/-/rapier3d-compat-0.12.0.tgz. Extracting by manifest.
+80 http cache @tweenjs/tween.js@https://registry.npmjs.org/@tweenjs/tween.js/-/tween.js-23.1.3.tgz 0ms (cache hit)
+81 http cache @types/react@https://registry.npmjs.org/@types/react/-/react-19.2.10.tgz 0ms (cache hit)
+82 http cache @types/three@https://registry.npmjs.org/@types/three/-/three-0.182.0.tgz 0ms (cache hit)
+83 silly tarball no local data for @tweenjs/tween.js@https://registry.npmjs.org/@tweenjs/tween.js/-/tween.js-23.1.3.tgz. Extracting by manifest.
+84 silly tarball no local data for @types/react@https://registry.npmjs.org/@types/react/-/react-19.2.10.tgz. Extracting by manifest.
+85 silly tarball no local data for @types/three@https://registry.npmjs.org/@types/three/-/three-0.182.0.tgz. Extracting by manifest.
+86 http fetch GET 200 https://registry.npmjs.org/@types/stats.js/-/stats.js-0.17.4.tgz 186ms (cache miss)
+87 http fetch POST 200 https://registry.npmjs.org/-/npm/v1/security/advisories/bulk 289ms
+88 silly audit report {}
+89 http fetch GET 200 https://registry.npmjs.org/@webgpu/types/-/types-0.1.69.tgz 339ms (cache miss)
+90 http fetch GET 200 https://registry.npmjs.org/@types/webxr/-/webxr-0.5.24.tgz 375ms (cache miss)
+91 http fetch GET 200 https://registry.npmjs.org/@tweenjs/tween.js/-/tween.js-23.1.3.tgz 359ms (cache miss)
+92 http fetch GET 200 https://registry.npmjs.org/meshoptimizer/-/meshoptimizer-0.22.0.tgz 445ms (cache miss)
+93 http fetch GET 200 https://registry.npmjs.org/fflate/-/fflate-0.8.2.tgz 453ms (cache miss)
+94 http fetch GET 200 https://registry.npmjs.org/@types/react/-/react-19.2.10.tgz 433ms (cache miss)
+95 http fetch GET 200 https://registry.npmjs.org/@dimforge/rapier3d-compat/-/rapier3d-compat-0.12.0.tgz 1531ms (cache miss)
+96 http fetch GET 200 https://registry.npmjs.org/@types/three/-/three-0.182.0.tgz 3688ms (cache miss)
+97 silly ADD node_modules/meshoptimizer
+98 silly ADD node_modules/fflate
+99 silly ADD node_modules/@webgpu/types
+100 silly ADD node_modules/@types/webxr
+101 silly ADD node_modules/@types/stats.js
+102 silly ADD node_modules/@tweenjs/tween.js
+103 silly ADD node_modules/@dimforge/rapier3d-compat
+104 silly ADD node_modules/@types/three
+105 silly CHANGE node_modules/@types/react
+106 verbose cwd C:\Users\meema\AppData\Local\Microsoft\TypeScript\5.9
+107 verbose os Windows_NT 10.0.26200
+108 verbose node v22.17.0
+109 verbose npm  v10.9.2
+110 verbose exit 0
+111 info ok

@@ -1,0 +1,12 @@
+0 verbose cli C:\Program Files\nodejs\node.exe C:\Program Files\nodejs\node_modules\npm\bin\npm-cli.js
+1 info using npm@10.9.2
+2 info using node@v22.17.0
+3 silly config load:file:C:\Program Files\nodejs\node_modules\npm\npmrc
+4 silly config load:file:D:\My stuff\Passion work\Websites I made\ExperimentalRoom\.npmrc
+5 silly config load:file:C:\Users\meema\.npmrc
+6 silly config load:file:C:\Users\meema\AppData\Roaming\npm\etc\npmrc
+7 verbose title npm run dev
+8 verbose argv "run" "dev"
+9 verbose logfile logs-max:10 dir:D:\My stuff\Passion work\Websites I made\ExperimentalRoom\npm-cache\_logs\2026-02-01T13_16_19_734Z-
+10 verbose logfile D:\My stuff\Passion work\Websites I made\ExperimentalRoom\npm-cache\_logs\2026-02-01T13_16_19_734Z-debug-0.log
+11 silly logfile done cleaning log files
